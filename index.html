@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:;">
+<title>14t15f - Minecraft сервер</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.9/purify.min.js"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00ff00',secondary:'#006400'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Arial', sans-serif;
+background-color: #000;
+color: #fff;
+background-image: url('https://readdy.ai/api/search-image?query=2b2t%20minecraft%20anarchy%20server%2C%20chaos%2C%20destroyed%20landscape%2C%20blocky%20terrain%2C%20pixel%20art%20style%2C%20dark%20atmosphere%2C%20ruins%20and%20griefed%20buildings%2C%20obsidian%20structures%2C%20lava%2C%20abandoned%20bases%2C%20nether%20portals%2C%20digital%20art&width=1920&height=1080&seq=123456&orientation=landscape');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+background-repeat: no-repeat;
+}
+.pixel-font {
+font-family: 'Press Start 2P', cursive;
+}
+.green-transparent {
+background-color: rgba(0, 255, 0, 0.15);
+backdrop-filter: blur(3px);
+border: 1px solid rgba(0, 255, 0, 0.3);
+}
+.green-transparent-darker {
+background-color: rgba(0, 255, 0, 0.25);
+backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 255, 0, 0.4);
+}
+.donate-btn {
+background-color: rgba(0, 255, 0, 0.4);
+transition: all 0.3s ease;
+}
+.donate-btn:hover {
+background-color: rgba(0, 255, 0, 0.7);
+transform: scale(1.05);
+}
+a:hover {
+text-decoration: underline;
+color: #00ff00;
+}
+.news-item {
+border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+padding: 15px 0;
+}
+.news-item:last-child {
+border-bottom: none;
+}
+input {
+background-color: rgba(0, 0, 0, 0.5);
+border: 1px solid rgba(0, 255, 0, 0.3);
+color: #00ff00;
+}
+input:focus {
+outline: none;
+border-color: rgba(0, 255, 0, 0.7);
+}
+</style>
+</head>
+<body class="min-h-screen">
+<div id="notification" class="fixed top-4 right-4 p-4 rounded hidden green-transparent"></div>
+<div class="container mx-auto px-4 py-8 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="text-center mb-8 mt-4">
+<h1 class="pixel-font text-5xl md:text-6xl text-primary tracking-wider shadow-lg">14t15f</h1>
+</header>
+<div class="flex flex-col md:flex-row gap-6 flex-grow">
+<!-- Main Content -->
+<div class="green-transparent rounded p-6 flex-grow order-2 md:order-1 min-w-[300px]">
+<h2 class="pixel-font text-2xl mb-6 text-primary">НОВОСТИ</h2>
+<div class="news-item">
+<h3 class="text-xl font-bold mb-2">Идите нахуй все </h3>
+<p class="text-sm">01.01.1970</p>
+<p class="mt-2">Я мать вашу трахал уебки</p>
+</div>
+<div class="news-item">
+<h3 class="text-xl font-bold mb-2">Обновление системы защиты</h3>
+<p class="text-sm">02.01.1488</p>
+<p class="mt-2">Трахнул собаку </p>
+</div>
+<div class="news-item">
+<h3 class="text-xl font-bold mb-2">525252</h3>
+<p class="text-sm">52.52.5252</p>
+<p class="mt-2">5252525252525252525252525252525252</p>
+</div>
+<div class="news-item">
+<h3 class="text-xl font-bold mb-2">Билеты на поезд купить</h3>
+<p class="text-sm">1111.1111.1111</p>
+<p class="mt-2">,kznm rjvg kfuftn gbpltw </p>
+</div>
+<!-- Stories Section -->
+<div class="mt-8 pt-8 border-t border-primary">
+<div class="flex justify-between items-center mb-6">
+<h2 class="pixel-font text-2xl text-primary">ИСТОРИИ ИГРОКОВ</h2>
+<button onclick="toggleModal('storyModal')" class="donate-btn py-2 px-4 rounded-button text-white flex items-center gap-2">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-add-line ri-lg"></i>
+</div>
+Добавить историю
+</button>
+</div>
+<div id="storiesContainer" class="space-y-6">
+<!-- Example stories -->
+<div class="green-transparent-darker rounded p-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold">Еммм example</h3>
+<span class="text-sm text-gray-400">05.05.2025</span>
+</div>
+<p class="text-sm mb-2">Автор: _CraftMaster_</p>
+<p>меня ебал отец жопа склеилась от чипсов</p>
+</div>
+<div class="green-transparent-darker rounded p-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold">Битва за чарон хз</h3>
+<span class="text-sm text-gray-400">03.05.2025</span>
+</div>
+<p class="text-sm mb-2">Автор: XXX_Vaginator42</p>
+<p>украли анальную затычку кто найдет звоните</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Story Modal -->
+<div id="storyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+<div class="green-transparent rounded p-6 max-w-md w-full mx-4">
+<div class="flex justify-between items-center mb-6">
+<h2 class="pixel-font text-xl text-primary">ДОБАВИТЬ ИСТОРИЮ</h2>
+<button onclick="toggleModal('storyModal')" class="text-primary hover:text-white">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-close-line ri-lg"></i>
+</div>
+</button>
+</div>
+<form id="storyForm" class="space-y-4">
+<div>
+<input type="text" name="nickname" placeholder="Ваш никнейм" class="w-full p-2 rounded bg-black bg-opacity-50 text-primary border border-primary focus:border-white" required>
+</div>
+<div>
+<input type="text" name="title" placeholder="Заголовок" class="w-full p-2 rounded bg-black bg-opacity-50 text-primary border border-primary focus:border-white" required>
+</div>
+<div>
+<textarea name="content" placeholder="Ваша история..." class="w-full p-2 rounded bg-black bg-opacity-50 text-primary border border-primary focus:border-white h-32" required></textarea>
+</div>
+<button type="submit" class="donate-btn w-full py-2 rounded-button text-white">ОПУБЛИКОВАТЬ</button>
+</form>
+</div>
+</div>
+<!-- Sidebar -->
+<div class="green-transparent-darker rounded p-6 w-full md:w-80 order-1 md:order-2 min-w-[300px]">
+<div class="mb-8">
+<h3 class="pixel-font text-xl mb-4 text-primary">IP СЕРВЕРА</h3>
+<div class="bg-black bg-opacity-50 p-3 rounded text-center">
+<p class="text-xl font-mono select-all">play.14t15f.ru</p>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="pixel-font text-xl mb-4 text-primary">DISCORD</h3>
+<div class="bg-black bg-opacity-50 p-3 rounded">
+<p class="mb-2">Присоединяйтесь к нашему сообществу:</p>
+<a href="#" class="flex items-center gap-2 text-white hover:text-primary">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-discord-fill ri-lg"></i>
+</div>
+<span>discord.gg/14t15f</span>
+</a>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="pixel-font text-xl mb-4 text-primary">ПОДДЕРЖКА</h3>
+<button class="donate-btn w-full py-3 px-4 rounded-button text-white font-bold flex items-center justify-center gap-2 whitespace-nowrap">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-heart-fill ri-lg"></i>
+</div>
+DONATE
+</button>
+</div>
+<div>
+<h3 class="pixel-font text-xl mb-4 text-primary">СТАТИСТИКА</h3>
+<div class="bg-black bg-opacity-50 p-3 rounded">
+<p class="flex justify-between items-center mb-2">
+<span>Статус:</span>
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-green-500">Онлайн</span>
+</span>
+</p>
+<p class="flex justify-between"><span>Игроков онлайн:</span> <span>128</span></p>
+<p class="flex justify-between"><span>Всего игроков:</span> <span>5842</span></p>
+<p class="flex justify-between"><span>Дней работы:</span> <span>365</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-8 text-center text-sm text-gray-400 py-4">
+<p>© 2025 14t15f - Анархический Minecraft сервер</p>
+</footer>
+</div>
+<script>
+function toggleModal(modalId) {
+const modal = document.getElementById(modalId);
+if (modal.classList.contains('hidden')) {
+modal.classList.remove('hidden');
+} else {
+modal.classList.add('hidden');
+}
+}
+function escapeHtml(unsafe) {
+return unsafe
+.replace(/&/g, "&amp;")
+.replace(/</g, "&lt;")
+.replace(/>/g, "&gt;")
+.replace(/"/g, "&quot;")
+.replace(/'/g, "&#039;");
+}
+function showNotification(message, isError = false) {
+const notification = document.getElementById('notification');
+notification.textContent = escapeHtml(message);
+notification.classList.remove('hidden');
+notification.style.backgroundColor = isError ? 'rgba(255, 0, 0, 0.2)' : 'rgba(0, 255, 0, 0.2)';
+setTimeout(() => {
+notification.classList.add('hidden');
+}, 3000);
+}
+document.addEventListener('DOMContentLoaded', () => {
+const storyForm = document.getElementById('storyForm');
+const storiesContainer = document.getElementById('storiesContainer');
+function validateInput(input) {
+const sanitized = input.trim();
+if (sanitized.length < 3 || sanitized.length > 32) return false;
+return /^[a-zA-Z0-9_-]+$/.test(sanitized);
+}
+function rateLimit(key, limit = 3, interval = 300000) {
+const now = Date.now();
+const attempts = JSON.parse(localStorage.getItem(key) || '[]');
+const recentAttempts = attempts.filter(time => now - time < interval);
+if (recentAttempts.length >= limit) {
+return false;
+}
+recentAttempts.push(now);
+localStorage.setItem(key, JSON.stringify(recentAttempts));
+return true;
+}
+async function checkNicknameExists(nickname) {
+try {
+const response = await fetch('istorii.txt');
+if (!response.ok) return false;
+const content = await response.text();
+const stories = content.split('\n').filter(line => line.trim());
+return stories.some(story => {
+try {
+const storyData = JSON.parse(story);
+return storyData.nickname.toLowerCase() === nickname.toLowerCase();
+} catch (e) {
+return false;
+}
+});
+} catch (error) {
+return false;
+}
+}
+storyForm.addEventListener('submit', async (e) => {
+e.preventDefault();
+if (!rateLimit('storySubmissions')) {
+showNotification('Подождите немного перед публикацией следующей истории', true);
+return;
+}
+const nickname = storyForm.nickname.value;
+const title = storyForm.title.value;
+const content = storyForm.content.value;
+if (!validateInput(nickname)) {
+showNotification('Некорректный никнейм', true);
+return;
+}
+if (await checkNicknameExists(nickname)) {
+showNotification('История с таким никнеймом уже существует', true);
+return;
+}
+if (title && content && nickname) {
+const storyData = {
+nickname: nickname,
+title: escapeHtml(title),
+content: escapeHtml(content),
+date: new Date().toLocaleDateString()
+};
+try {
+const response = await fetch('/save-story', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+},
+body: JSON.stringify(storyData)
+});
+if (!response.ok) throw new Error('Failed to save story');
+const newStory = document.createElement('div');
+newStory.className = 'green-transparent-darker rounded p-4';
+newStory.innerHTML = `
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold">${storyData.title}</h3>
+<span class="text-sm text-gray-400">${storyData.date}</span>
+</div>
+<p class="text-sm mb-2">Автор: ${storyData.nickname}</p>
+<p>${storyData.content}</p>
+`;
+storiesContainer.insertBefore(newStory, storiesContainer.firstChild);
+showNotification('История успешно добавлена!');
+toggleModal('storyModal');
+storyForm.reset();
+} catch (error) {
+showNotification('Ошибка при сохранении истории', true);
+}
+} else {
+showNotification('Пожалуйста, заполните все поля', true);
+}
+});
+async function loadStories() {
+try {
+const response = await fetch('istorii.txt');
+if (!response.ok) return;
+const content = await response.text();
+const stories = content.split('\n')
+.filter(line => line.trim())
+.map(line => JSON.parse(line))
+.reverse();
+storiesContainer.innerHTML = stories.map(story => `
+<div class="green-transparent-darker rounded p-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold">${story.title}</h3>
+<span class="text-sm text-gray-400">${story.date}</span>
+</div>
+<p class="text-sm mb-2">Автор: ${story.nickname}</p>
+<p>${story.content}</p>
+</div>
+`).join('');
+} catch (error) {
+console.error('Failed to load stories:', error);
+}
+}
+loadStories();
+});
+</script>
+</body>
+</html>
