@@ -389,6 +389,8 @@ color: transparent;
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+// Load saved stories when page loads
+loadStories();
 function createSnowflake() {
 const snowflake = document.createElement('div');
 snowflake.classList.add('snowflake');
@@ -510,36 +512,57 @@ storyNickname.value = '';
 storyTitle.value = '';
 storyContent.value = '';
 });
+// Загрузка историй при старте
+function loadStories() {
+    const stories = JSON.parse(localStorage.getItem('userStories')) || [];
+    storiesList.innerHTML = '';
+    stories.forEach(story => {
+        const storyElement = document.createElement('div');
+        storyElement.className = 'story-item p-4 mb-6 rounded-lg';
+        storyElement.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-xl font-semibold">${story.title}</h2>
+                <span class="text-sm text-gray-400">Автор: ${story.nickname}</span>
+            </div>
+            <p class="text-gray-300">${story.content}</p>
+        `;
+        storiesList.appendChild(storyElement);
+    });
+}
 // Добавление новой истории
 submitStory.addEventListener('click', function() {
-const nickname = storyNickname.value.trim();
-const title = storyTitle.value.trim();
-const content = storyContent.value.trim();
-if (nickname.length > 12) {
-storyNickname.style.borderColor = '#ff4d4d';
-setTimeout(() => {
-storyNickname.style.borderColor = '';
-}, 2000);
-return;
-}
-if (nickname && title && content) {
-// Создаем новую историю
-const newStory = document.createElement('div');
-newStory.className = 'story-item p-4 mb-6 rounded-lg';
-newStory.innerHTML = `
-<div class="flex justify-between items-center mb-2">
-<h2 class="text-xl font-semibold">${title}</h2>
-<span class="text-sm text-gray-400">Автор: ${nickname}</span>
-</div>
-<p class="text-gray-300">${content}</p>
-`;
-// Добавляем в начало списка
-storiesList.insertBefore(newStory, storiesList.firstChild);
-// Очищаем и скрываем форму
-storyNickname.value = '';
-storyTitle.value = '';
-storyContent.value = '';
-addStoryForm.classList.add('hidden');
+    const nickname = storyNickname.value.trim();
+    const title = storyTitle.value.trim();
+    const content = storyContent.value.trim();
+    if (nickname.length > 12) {
+        storyNickname.style.borderColor = '#ff4d4d';
+        setTimeout(() => {
+            storyNickname.style.borderColor = '';
+        }, 2000);
+        return;
+    }
+    if (nickname && title && content) {
+        // Сохраняем историю в localStorage
+        const stories = JSON.parse(localStorage.getItem('userStories')) || [];
+        stories.unshift({ nickname, title, content, date: new Date().toISOString() });
+        localStorage.setItem('userStories', JSON.stringify(stories));
+        // Создаем новую историю
+        const newStory = document.createElement('div');
+        newStory.className = 'story-item p-4 mb-6 rounded-lg';
+        newStory.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <h2 class="text-xl font-semibold">${title}</h2>
+                <span class="text-sm text-gray-400">Автор: ${nickname}</span>
+            </div>
+            <p class="text-gray-300">${content}</p>
+        `;
+        // Добавляем в начало списка
+        storiesList.insertBefore(newStory, storiesList.firstChild);
+        // Очищаем и скрываем форму
+        storyNickname.value = '';
+        storyTitle.value = '';
+        storyContent.value = '';
+        addStoryForm.classList.add('hidden');
 // Добавляем анимацию появления
 newStory.style.opacity = '0';
 newStory.style.transform = 'translateY(10px)';
